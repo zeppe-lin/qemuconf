@@ -11,13 +11,11 @@ qemuconf - simple qemu launcher with config file support
 
 =head1 SYNOPSIS
 
-B<qemuconf> [B<-q> I<PATH>] I<CONFIG> [-- QEMU OPTIONS ...]
+B<qemuconf> [B<-q> I<PATH>] I<CONFIG> [-- QEMU ARGS ...]
 
 B<qemuconf> [B<-n>] I<CONFIG>
 
-B<qemuconf> [B<-v>]
-
-B<qemuconf> [B<-h>]
+B<qemuconf> [B<-V>]
 
 =head1 DESCRIPTION
 
@@ -41,10 +39,6 @@ Useful for diagnostic purposes.
 =item B<-v>
 
 Print version and exit.
-
-=item B<-h>
-
-Print help and exit.
 
 =back
 
