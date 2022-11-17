@@ -1,0 +1,99 @@
+# This file is a part of qemuconf.
+# See COPYING and COPYRIGHT files for corresponding information.
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+qemuconf - simple qemu launcher with config file support
+
+=head1 SYNOPSIS
+
+B<qemuconf> [B<-q> I<PATH>] I<CONFIG> [-- QEMU OPTIONS ...]
+
+B<qemuconf> [B<-n>] I<CONFIG>
+
+B<qemuconf> [B<-v>]
+
+B<qemuconf> [B<-h>]
+
+=head1 DESCRIPTION
+
+B<qemuconf> executes L<qemu(1)> with arguments compiled from a
+configuration file.
+
+=head1 OPTIONS
+
+=over 8
+
+=item B<-q> I<PATH>
+
+Set the default path to L<qemu(1)> binary.  This option may be
+overwritten by the I<binary> option in the configuration file.
+
+=item B<-n> I<CONFIG>
+
+Print the produced argument list to stdout, instead of executing.
+Useful for diagnostic purposes.
+
+=item B<-v>
+
+Print version and exit.
+
+=item B<-h>
+
+Print help and exit.
+
+=back
+
+=head1 EXAMPLES
+
+  #
+  # /etc/qemuconf.d/generic.conf: configuration file for qemuconf(1)
+  #
+  # See qemuconf(1) for more information.
+  #
+
+  binary /usr/bin/qemu-system-x86_64
+  cwd    /var/qemu/generic
+  smp    2
+  m      1024
+  enable-kvm
+  drive:
+    if      virtio
+    file    hda.img
+  net nic:
+    vlan    0
+    model   virtio
+    macaddr 82:82:9D:AF:F0:1C
+  net user:
+    vlan    0
+  vnc 127.0.0.1:1
+
+  # End of file.
+
+This configuration file will execute the following command:
+
+  /usr/bin/qemu-system-x86_64 -smp 2 -m 1024 -enable-kvm \
+    -drive if=virtio,file=hda.img \
+    -net nic,vlan=0,model=virtio,macaddr=82:82:9D:AF:F0:1C \
+    -net user,vlan=0 -vnc 127.0.0.1:1
+
+The C<cwd> option instructs B<qemuconf> to L<chdir(2)> into
+F</var/qemu/qeneric> before executing a L<qemu(1)> instance.
+
+=head1 AUTHORS
+
+Enno Boland <eb@s01.de>
+
+=head1 SEE ALSO
+
+L<qemuconf-import(1)>, L<qemu(1)>.
+
+=cut
+
+
+# vim:sw=2:ts=2:sts=2:et:cc=72:tw=70
+# End of file.
