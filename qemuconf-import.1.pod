@@ -1,0 +1,32 @@
+# This file is a part of qemuconf.
+# See COPYING and COPYRIGHT files for corresponding information.
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+qemuconf-import - make qemuconf file from currently running qemu instance
+
+=head1 SYNOPSIS
+
+B<qemuconf-import>
+
+=head1 DESCRIPTION
+
+B<qemuconf-import> creates configuration file for L<qemuconf(1)> from
+currently running qemu instance.
+
+=head1 AUTHORS
+
+Enno Boland <eb@s01.de>
+
+=head1 SEE ALSO
+
+L<qemuconf(1)>, L<qemu(1)>.
+
+=cut
+
+# vim:sw=2:ts=2:sts=2:et:cc=72:tw=70
+# End of file.
