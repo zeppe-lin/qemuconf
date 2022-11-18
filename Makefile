@@ -1,50 +1,39 @@
-BINARY ?= qemu-system-x86_64
-PREFIX ?= /usr/local
-ETCDIR ?= /etc
-MANPREFIX ?= $(PREFIX)/share/man
-VERSION = $(shell head -n 1 README.md | cut -d- -f 2)
+# This file is a part of qemuconf.
+# See COPYING and COPYRIGHT files for corresponding information.
 
-all: qemuconf
+include config.mk
 
-qemuconf: qemuconf.c
-	$(CC) $(LDFLAGS) $(CFLAGS) -DVERSION=\"$(VERSION)\" -DBINARY=\"$(BINARY)\" -o $@ $<
+all: qemuconf qemuconf.1 qemuconf-import.1
 
-clean:
-	rm -f qemuconf qemu@.service qemu.runit
+%: %.pod
+	pod2man --nourls -r ${VERSION} -c ' ' -n $(basename $@) \
+		-s 1 $< > $@
 
-qemuconf.1: README.md
-	pandoc -f markdown_github -t man $< | \
-		sed "1s/\.SH/.TH/" > $@
+.c.o:
+	${CC} -c ${CFLAGS} ${CPPFLAGS} $< -o $@
 
-qemu@.service: qemu@.service.in
-	sed "s#PREFIX#$(PREFIX)#g;s#ETCDIR#$(ETCDIR)#" $< > $@
+qemuconf: qemuconf.o
+	${LD} $^ ${LDFLAGS} -o $@
 
-qemu.runit: qemu.runit.in
-	sed "s#PREFIX#$(PREFIX)#g;s#ETCDIR#$(ETCDIR)#" $< > $@
-
-install: qemuconf
-	mkdir -p $(DESTDIR)$(PREFIX)/bin $(DESTDIR)$(MANPREFIX)/man1 \
-		$(ETCDIR)/qemu.d
-	cp -f qemuconf $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/qemuconf
-	cp -f qemuconf.1 $(DESTDIR)$(MANPREFIX)/man1/
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/qemuconf.1
-
-install-systemd: qemu@.service install
-	mkdir -p $(DESTDIR)$(PREFIX)/lib/systemd/system
-	cp -f $< $(DESTDIR)$(PREFIX)/lib/systemd/system
-	chmod 644 $(DESTDIR)$(PREFIX)/lib/systemd/system/$<
-
-install-runit: qemu.runit install
-	mkdir -p $(DESTDIR)$(ETCDIR)/sv/qemu-generic
-	cp -f $< $(DESTDIR)$(ETCDIR)/sv/qemu-generic/run
-	chmod 755 $(DESTDIR)$(ETCDIR)/sv/qemu-generic/run
+install: all
+	install -m 0755 -Dt ${DESTDIR}${BINDIR}/ \
+		qemuconf qemuconf-import
+	install -m 0644 -Dt ${DESTDIR}${MANDIR}/man1/ \
+		qemuconf.1 qemuconf-import.1
 
 uninstall:
-	rm -rf $(DESTDIR)$(MANPREFIX)/man1/qemuconf.1 $(DESTDIR)$(PREFIX)/sv/qemu-generic \
-		$(DESTDIR)$(PREFIX)/lib/systemd/system/qemu@.service $(DESTDIR)$(PREFIX)/bin/qemuconf
+	rm -f ${DESTDIR}${BINDIR}/qemuconf
+	rm -f ${DESTDIR}${BINDIR}/qemuconf-import
+	rm -f ${DESTDIR}${MANDIR}/man1/qemuconf.1
+	rm -f ${DESTDIR}${MANDIR}/man1/qemuconf-import.1
+
+clean:
+	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
 
 test: qemuconf
-	@test/test.sh
+	test/test.sh
 
-.PHONY: clean install install-systemd install-runit uninstall test
+.PHONY: all install uninstall clean test
+
+# vim:cc=72:tw=70
+# End of file.
