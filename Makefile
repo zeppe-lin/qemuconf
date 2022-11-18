@@ -27,13 +27,13 @@ uninstall:
 	rm -f ${DESTDIR}${MANDIR}/man1/qemuconf.1
 	rm -f ${DESTDIR}${MANDIR}/man1/qemuconf-import.1
 
+check: qemuconf
+	tests/run.sh
+
 clean:
 	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
 
-test: qemuconf
-	test/test.sh
-
-.PHONY: all install uninstall clean test
+.PHONY: all install uninstall check clean
 
 # vim:cc=72:tw=70
 # End of file.
