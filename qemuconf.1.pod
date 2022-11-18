@@ -11,7 +11,7 @@ qemuconf - simple qemu launcher with config file support
 
 =head1 SYNOPSIS
 
-B<qemuconf> [B<-q> I<PATH>] I<CONFIG> [-- QEMU ARGS ...]
+B<qemuconf> [B<-q> I<EXEC>] I<CONFIG> [-- QEMU ARGS ...]
 
 B<qemuconf> [B<-n>] I<CONFIG>
 
@@ -26,10 +26,10 @@ configuration file.
 
 =over 8
 
-=item B<-q> I<PATH>
+=item B<-q> I<EXEC>
 
-Set the default path to L<qemu(1)> binary.  This option may be
-overwritten by the I<binary> option in the configuration file.
+Set the default L<qemu(1)> binary.  This option may be overwritten by
+the I<binary> option in the configuration file.
 
 =item B<-n> I<CONFIG>
 
@@ -84,7 +84,7 @@ Enno Boland <eb@s01.de>
 
 =head1 SEE ALSO
 
-L<qemuconf-import(1)>, L<qemu(1)>.
+L<qemuconf-import(1)>, L<qemu(1)>
 
 =cut
 
