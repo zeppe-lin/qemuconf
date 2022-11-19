@@ -92,9 +92,9 @@ addopt(char *opt, int len) {
 
 int
 compact(char *text, int i, int len, int minindent) {
-	int _i, indent, curindent, w=i, line = 0;
+	int _i, curindent, w=i, line = 0;
 
-	for(curindent = 0, indent = -1, line = 0; i < len; line++, i++) {
+	for(curindent = 0, line = 0; i < len; line++, i++) {
 		DROP(isspace(text[i]) && text[i] != '\n', _i);
 		curindent = i - _i;
 
