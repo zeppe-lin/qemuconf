@@ -1,6 +1,3 @@
-# This file is a part of qemuconf.
-# See COPYING and COPYRIGHT files for corresponding information.
-
 # qemuconf version
 VERSION = 0.2.1
 
@@ -20,6 +17,3 @@ LDFLAGS  =
 # compiler and linker
 CC = gcc
 LD = ${CC}
-
-# vim:cc=72:tw=70
-# End of file.

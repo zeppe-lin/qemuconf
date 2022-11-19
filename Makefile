@@ -1,13 +1,9 @@
-# This file is a part of qemuconf.
-# See COPYING and COPYRIGHT files for corresponding information.
-
 include config.mk
 
 all: qemuconf qemuconf.1 qemuconf-import.1
 
 %: %.pod
-	pod2man --nourls -r ${VERSION} -c ' ' -n $(basename $@) \
-		-s 1 $< > $@
+	pod2man --nourls -r${VERSION} -c' ' -n$(basename $@) -s1 $< > $@
 
 .c.o:
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $< -o $@
@@ -17,7 +13,7 @@ qemuconf: qemuconf.o
 
 install: all
 	install -m 0755 -Dt ${DESTDIR}${BINDIR}/ \
-		qemuconf qemuconf-import
+		qemuconf   qemuconf-import
 	install -m 0644 -Dt ${DESTDIR}${MANDIR}/man1/ \
 		qemuconf.1 qemuconf-import.1
 
@@ -34,6 +30,3 @@ clean:
 	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
 
 .PHONY: all install uninstall check clean
-
-# vim:cc=72:tw=70
-# End of file.
