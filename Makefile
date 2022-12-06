@@ -1,21 +1,25 @@
+# See LICENSE file for copyright and license details.
+
 include config.mk
 
 all: qemuconf qemuconf.1 qemuconf-import.1
 
 %: %.pod
-	pod2man --nourls -r${VERSION} -c' ' -n$(basename $@) -s1 $< > $@
+	pod2man --nourls -c ' ' -r ${VERSION} -s 1 \
+		-n $(basename $@) $< > $@
 
 .c.o:
-	${CC} -c ${CFLAGS} ${CPPFLAGS} $< -o $@
+	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
 
 qemuconf: qemuconf.o
-	${LD} $^ ${LDFLAGS} -o $@
+	${LD} -o $@ ${LDFLAGS} $^
 
 install: all
-	install -m 0755 -Dt ${DESTDIR}${BINDIR}/ \
-		qemuconf   qemuconf-import
-	install -m 0644 -Dt ${DESTDIR}${MANDIR}/man1/ \
-		qemuconf.1 qemuconf-import.1
+	mkdir -p ${DESTDIR}${BINDIR} ${DESTDIR}${MANDIR}/man1
+	cp -f qemuconf   qemuconf-import   ${DESTDIR}${BINDIR}/
+	chmod 0755 ${DESTDIR}${BINDIR}/*
+	cp -f qemuconf.1 qemuconf-import.1 ${DESTDIR}${MANDIR}/man1/
+	chmod 0644 ${DESTDIR}${MANDIR}/man1/*
 
 uninstall:
 	rm -f ${DESTDIR}${BINDIR}/qemuconf
@@ -30,3 +34,6 @@ clean:
 	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
 
 .PHONY: all install uninstall check clean
+
+# vim:cc=72:tw=70
+# End of file.
