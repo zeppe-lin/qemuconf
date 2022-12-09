@@ -25,6 +25,7 @@ REQUIREMENTS
     * pod2man(1pm) from perl distribution
 
     Tests:
+    * GNU bash(1)
     * podchecker(1pm)
       check PODs for errors
     * httpx(1)
