@@ -16,7 +16,6 @@ ABOUT qemuconf
     1. https://github.com/Gottox/qemuconf
     2. https://github.com/Gottox/qemuconf/archive/50b8369/qemuconf-50b8369.zip
 
-
 REQUIREMENTS
 
     Build time:
@@ -26,11 +25,8 @@ REQUIREMENTS
 
     Tests:
     * GNU bash(1)
-    * podchecker(1pm)
-      check PODs for errors
-    * httpx(1)
-      check URLs for non-200 response code
-
+    * podchecker(1pm) to check PODs for errors
+    * httpx(1) to check URLs for non-200 response code
 
 INSTALL
 
@@ -40,7 +36,6 @@ INSTALL
     The shell commands "make && make check" should build and start
     some tests.  See ./Makefile and tests directory for additional
     information.
-
 
 LICENSE
 
