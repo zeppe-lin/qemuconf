@@ -3,14 +3,13 @@ ABOUT qemuconf
     This directory contains qemuconf, a tiny utility that executes
     qemu(1) with arguments from a configuration file.
 
-
     This qemuconf distribution is a fork of Gottox' qemuconf version
     0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
     differences:
-    * the man page have been rewritten in POD
-    * added qemuconf-import(1) man page
-    * removed unnecessary service files
-    * test file was adjusted to POSIX sh(1p)
+     * the man page have been rewritten in POD
+     * added qemuconf-import(1) man page
+     * removed unnecessary service files
+     * test file was adjusted to POSIX sh(1p)
     See git log for further differences.
 
     The original sources can be downloaded from:
@@ -20,14 +19,14 @@ ABOUT qemuconf
 REQUIREMENTS
 
     Build time:
-    * c99 compiler
-    * POSIX sh(1p), make(1p) and "mandatory utilities"
-    * pod2man(1pm) from perl distribution
+     * c99 compiler
+     * POSIX sh(1p), make(1p) and "mandatory utilities"
+     * pod2man(1pm) from perl distribution
 
     Tests:
-    * POSIX sh(1p), make(1p) and "mandatory utilities"
-    * podchecker(1pm) to check PODs for errors
-    * httpx(1) to check URLs for non-200 response code
+     * POSIX sh(1p), make(1p) and "mandatory utilities"
+     * podchecker(1pm) to check PODs for errors
+     * httpx(1) to check URLs for non-200 response code
 
 INSTALL
 
