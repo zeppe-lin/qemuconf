@@ -14,6 +14,11 @@ all: qemuconf qemuconf.1 qemuconf-import.1
 qemuconf: qemuconf.o
 	${LD} -o $@ ${LDFLAGS} $^
 
+check: qemuconf
+	@podchecker *.pod
+	@grep -Eiho "https?://[^\"\\'> ]+" *.* | httpx -silent -fc 200 -s
+	@tests/run.sh
+
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
@@ -23,9 +28,6 @@ install: all
 uninstall:
 	cd ${DESTDIR}${PREFIX}/bin     && rm -f qemuconf   qemuconf-import
 	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f qemuconf.1 qemuconf-import.1
-
-check: qemuconf
-	tests/run.sh
 
 clean:
 	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
