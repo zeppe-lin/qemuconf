@@ -1,15 +1,15 @@
-#! /bin/sh
-
-cd $(dirname $(which $0))
+#!/bin/sh
+cd "$(dirname "$(which "$0")")" || exit 1
 
 assert() {
-	local r="$(cat)"
-	[ "$2" = "$r" ] && return 0;
+	r="$(cat)"
+	[ "$2" = "$r" ] && return 0
 
 	echo "ERROR:     $1"
 	echo "EXPECTED:  $2"
 	echo "ACTUAL:    $r"
 	echo "----"
+	unset -v r
 }
 
 QEMUCONF="../qemuconf -n -q q"
