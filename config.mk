@@ -5,9 +5,8 @@ VERSION = 0.2.1
 BINARY = qemu-system-x86_64
 
 # paths
-PREFIX = /usr/local
-BINDIR = ${PREFIX}/bin
-MANDIR = ${PREFIX}/share/man
+PREFIX    = /usr/local
+MANPREFIX = ${PREFIX}/share/man
 
 # flags
 CPPFLAGS = -DVERSION=\"${VERSION}\" -DBINARY=\"${BINARY}\"
