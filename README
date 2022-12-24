@@ -10,6 +10,7 @@ ABOUT qemuconf
     * the man page have been rewritten in POD
     * added qemuconf-import(1) man page
     * removed unnecessary service files
+    * test file was adjusted to POSIX sh(1p)
     See git log for further differences.
 
     The original sources can be downloaded from:
