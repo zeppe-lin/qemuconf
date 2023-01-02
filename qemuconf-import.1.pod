@@ -24,7 +24,7 @@ Enno Boland <eb@s01.de>
 
 =head1 SEE ALSO
 
-L<qemuconf(1)>, L<qemu(1)>.
+L<qemuconf(1)>, L<qemu(1)>
 
 =cut
 
