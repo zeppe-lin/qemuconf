@@ -1,28 +1,29 @@
-# See LICENSE file for copyright and license details.
-
 include config.mk
 
 all: qemuconf qemuconf.1 qemuconf-import.1
 
 %: %.pod
-	pod2man --nourls -c ' ' -r ${VERSION} -s 1 \
+	pod2man --nourls -r ${VERSION} -c ' ' -s 1 \
 		-n $(basename $@) $< > $@
 
 .c.o:
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
 
 qemuconf: qemuconf.o
-	${LD} -o $@ ${LDFLAGS} $^
+	${LD} $^ ${LDFLAGS} -o $@
 
 check: qemuconf
+	@echo "=======> Check PODs for errors"
 	@podchecker *.pod
+	@echo "=======> Check URLs for non-200 response code"
 	@grep -Eiho "https?://[^\"\\'> ]+" *.* | httpx -silent -fc 200 -s
+	@echo "=======> Check qemuconf parsing for errors"
 	@tests/run.sh
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	cp -f qemuconf   qemuconf-import   ${DESTDIR}${PREFIX}/sbin/
+	cp -f qemuconf   qemuconf-import   ${DESTDIR}${PREFIX}/bin/
 	cp -f qemuconf.1 qemuconf-import.1 ${DESTDIR}${MANPREFIX}/man1/
 
 uninstall:
@@ -33,6 +34,3 @@ clean:
 	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
 
 .PHONY: all install uninstall check clean
-
-# vim:cc=72:tw=70
-# End of file.
