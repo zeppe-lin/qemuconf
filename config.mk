@@ -10,7 +10,7 @@ MANPREFIX = ${PREFIX}/share/man
 
 # flags
 CPPFLAGS = -DVERSION=\"${VERSION}\" -DBINARY=\"${BINARY}\"
-CFLAGS   = -Wall -Wextra -pedantic
+CFLAGS   = -pedantic -Wall -Wextra -Wformat
 LDFLAGS  =
 
 # compiler and linker
