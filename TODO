@@ -1,2 +1,0 @@
-qemuconf-import:
-  * switch to POSIX sh(1p)
