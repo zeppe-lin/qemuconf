@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Copyright © 2015 tox <tox@rootkit>
 # Distributed under terms of the MIT license.
+
+# shellcheck shell=sh disable=2086
 
 mkconfig() {
 	exe=$(readlink $1/exe)
