@@ -33,7 +33,7 @@ the I<binary> option in the configuration file.
 Print the produced argument list to stdout, instead of executing.
 Useful for diagnostic purposes.
 
-=item B<-v>
+=item B<-V>
 
 Print version and exit.
 
