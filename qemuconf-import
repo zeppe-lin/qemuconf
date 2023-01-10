@@ -7,7 +7,7 @@
 mkconfig() {
 	exe=$(readlink $1/exe)
 	cwd=$(readlink $1/cwd)
-	local lastopt=
+	unset lastopt
 
 	echo cwd "$cwd"
 	printf "binary "
