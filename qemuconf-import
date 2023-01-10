@@ -5,7 +5,7 @@
 # shellcheck shell=sh disable=2086
 
 mkconfig() {
-	exe=$(readlink $1/exe)
+	#exe=$(readlink $1/exe)
 	cwd=$(readlink $1/cwd)
 	unset lastopt
 
