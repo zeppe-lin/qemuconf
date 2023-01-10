@@ -10,6 +10,7 @@ differences:
   * added qemuconf-import(1) man page
   * removed unnecessary service files
   * test file was adjusted to POSIX sh(1p)
+  * qemuconf-import was adjusted to POSIX sh(1p)
 
 See git log for further differences.
 
