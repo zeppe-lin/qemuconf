@@ -6,6 +6,7 @@ This directory contains *qemuconf*, a tiny utility that executes
 This *qemuconf* distribution is a fork of Gottox' *qemuconf* version
 0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
 differences:
+
   * the man page have been rewritten in POD format
   * added qemuconf-import(1) man page
   * removed unnecessary service files
@@ -41,7 +42,6 @@ LICENSE
 -------
 *qemuconf* is licensed through MIT License.
 See *LICENSE* file for copyright and license details.
-
 
 <!-- vim:sw=2:ts=2:sts=2:et:cc=72:tw=70
 End of file. -->
