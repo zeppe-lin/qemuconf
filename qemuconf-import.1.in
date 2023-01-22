@@ -1,0 +1,24 @@
+.\" See LICENSE file for copyright and license details.
+
+.TH QEMUCONF-IMPORT 1 "January 2023" "qemuconf-import @VERSION@"
+
+.SH NAME
+qemuconf-import \- make qemuconf file from currently running qemu instance
+
+.SH SYNOPSIS
+.B qemuconf-import
+
+.SH DESCRIPTION
+.B qemuconf-import
+creates configuration file for
+.BR qemuconf (1)
+from currently running
+.BR qemu (1)
+instance.
+
+.SH AUTHORS
+Enno Boland <eb@s01.de>
+
+.SH SEE ALSO
+.BR qemuconf (1),
+.BR qemu (1)
