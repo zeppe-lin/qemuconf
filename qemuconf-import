@@ -16,7 +16,7 @@ mkconfig() {
 			[ "$lastopt" ] && echo
 			printf "%s" "${arg#-}"
 			lastopt=1
-			continue;
+			continue
 		fi
 		lastopt=
 
@@ -37,7 +37,7 @@ mkconfig() {
 for proc in /proc/*/exe; do
 	case $(readlink $proc) in
 		*/qemu-*|*/qemu) : ;;
-		*) continue;
+		*) continue        ;;
 	esac
 	conf=$(mkconfig ${proc%/*})
 	echo "----"
