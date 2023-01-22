@@ -4,9 +4,8 @@ include config.mk
 
 all: qemuconf qemuconf.1 qemuconf-import.1
 
-%: %.pod
-	pod2man --nourls -r ${VERSION} -c ' ' -s 1 \
-		-n $(basename $@) $< > $@
+%: %.in
+	sed "s/@VERSION@/${VERSION}/g" $< > $@
 
 .c.o:
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
@@ -15,8 +14,6 @@ qemuconf: qemuconf.o
 	${LD} $^ ${LDFLAGS} -o $@
 
 check: qemuconf
-	@echo "=======> Check PODs for errors"
-	@podchecker *.pod
 	@echo "=======> Check URLs for response code"
 	@grep -Eiho "https?://[^\"\\'> ]+" *.* | xargs -P10 -I{} \
 		curl -o /dev/null -sw "[%{http_code}] %{url}\n" '{}'
