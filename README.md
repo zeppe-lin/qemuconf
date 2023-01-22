@@ -6,7 +6,7 @@ This directory contains _qemuconf_, a tiny utility that executes
 This _qemuconf_ distribution is a fork of Gottox' _qemuconf_ version
 0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
 differences:
-  * the man page have been rewritten in POD format
+  * the man page have been completely rewritten
   * added qemuconf-import(1) man page
   * removed unnecessary service files
   * test file was adjusted to POSIX sh(1p)
@@ -23,11 +23,9 @@ REQUIREMENTS
 Build time:
   * c99 compiler
   * POSIX sh(1p), make(1p) and "mandatory utilities"
-  * pod2man(1pm) to build man pages
 
 Tests:
   * POSIX sh(1p), make(1p) and "mandatory utilities"
-  * podchecker(1pm) to check PODs for errors
   * curl(1) to check URLs for response code
 
 INSTALL
