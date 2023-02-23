@@ -2,7 +2,7 @@
 
 include config.mk
 
-all: qemuconf qemuconf.1 qemuconf-import.1
+all: qemuconf
 
 .c.o:
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
