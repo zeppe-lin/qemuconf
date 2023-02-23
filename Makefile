@@ -4,9 +4,6 @@ include config.mk
 
 all: qemuconf qemuconf.1 qemuconf-import.1
 
-%: %.in
-	sed "s/@VERSION@/${VERSION}/g" $< > $@
-
 .c.o:
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
 
@@ -23,8 +20,10 @@ check: qemuconf
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	cp -f qemuconf   qemuconf-import   ${DESTDIR}${PREFIX}/bin/
-	cp -f qemuconf.1 qemuconf-import.1 ${DESTDIR}${MANPREFIX}/man1/
+	sed "s/@VERSION@/${VERSION}/g" qemuconf.1.in > \
+		${DESTDIR}${MANPREFIX}/man1/qemuconf.1
+	sed "s/@VERSION@/${VERSION}/g" qemuconf-import.1.in > \
+		${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
 
 uninstall:
 	cd ${DESTDIR}${PREFIX}/bin     && rm -f qemuconf   qemuconf-import
