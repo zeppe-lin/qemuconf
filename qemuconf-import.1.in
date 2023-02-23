@@ -1,6 +1,6 @@
 .\" See LICENSE file for copyright and license details.
 
-.TH QEMUCONF-IMPORT 1 "January 2023" "qemuconf-import @VERSION@"
+.TH QEMUCONF-IMPORT 1 "January 2023" "qemuconf @VERSION@"
 
 .SH NAME
 qemuconf-import \- make qemuconf file from currently running qemu instance
