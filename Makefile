@@ -11,7 +11,7 @@ all: qemuconf qemuconf.1 qemuconf-import.1
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
 
 qemuconf: qemuconf.o
-	${LD} $^ ${LDFLAGS} -o $@
+	${LD} qemuconf.o ${LDFLAGS} -o $@
 
 check: qemuconf
 	@echo "=======> Check URLs for response code"
