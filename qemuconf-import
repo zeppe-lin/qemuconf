@@ -36,8 +36,8 @@ mkconfig() {
 
 for proc in /proc/*/exe; do
 	case $(readlink $proc) in
-		*/qemu-*|*/qemu) : ;;
-		*) continue        ;;
+	*/qemu-*|*/qemu) : ;;
+	*) continue        ;;
 	esac
 	conf=$(mkconfig ${proc%/*})
 	echo "----"
