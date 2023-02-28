@@ -33,37 +33,42 @@ Useful for diagnostic purposes.
 Print version and exit.
 
 .SH EXAMPLES
+Lets say we have the following configuration file:
+.P
 .nf
-#
-# /etc/qemuconf.d/generic.conf: configuration file for qemuconf(1)
-#
+    #
+    # /etc/qemuconf.d/generic.conf: configuration file for qemuconf(1)
+    #
 
-binary  /usr/bin/qemu-system-x86_64
-cwd     /var/qemu/generic
-smp     2
-m       1024
-enable-kvm
-drive:
-  if      virtio
-  file    hda.img
-net nic:
-  vlan    0
-  model   virtio
-  macaddr 82:82:9D:AF:F0:1C
-net user:
-  vlan    0
-vnc 127.0.0.1:1
+    binary  /usr/bin/qemu-system-x86_64
+    cwd     /var/qemu/generic
+    smp     2
+    m       1024
+    enable-kvm
+    drive:
+      if      virtio
+      file    hda.img
+    net nic:
+      vlan    0
+      model   virtio
+      macaddr 82:82:9D:AF:F0:1C
+    net user:
+      vlan    0
+    vnc 127.0.0.1:1
 
-# End of file.
+    # End of file.
 .fi
 .P
-The configuration file will execute the following command:
+This configuration file will be translated by
+.BR qemuconf (1)
+into the following command:
+.P
 .nf
-/usr/bin/qemu-system-x86_64 -smp 2 -m 1024 -enable-kvm \\
-  -drive if=virtio,file=hda.img \\
-  -net nic,vlan=0,model=virtio,macaddr=82:82:9D:AF:F0:1C \\
-  -net user,vlan=0 \\
-  -vnc 127.0.0.1:1
+    /usr/bin/qemu-system-x86_64 -smp 2 -m 1024 -enable-kvm \\
+    -drive if=virtio,file=hda.img \\
+    -net nic,vlan=0,model=virtio,macaddr=82:82:9D:AF:F0:1C \\
+    -net user,vlan=0 \\
+    -vnc 127.0.0.1:1
 .fi
 .P
 The "cwd" option instructs \fBqemuconf\fR to
