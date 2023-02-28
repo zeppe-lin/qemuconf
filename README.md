@@ -26,7 +26,6 @@ Build time:
 
 Tests:
   * POSIX sh(1p), make(1p) and "mandatory utilities"
-  * curl(1) to check URLs for response code
 
 INSTALL
 -------
