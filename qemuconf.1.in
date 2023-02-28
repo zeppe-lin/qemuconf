@@ -72,6 +72,13 @@ into \fI/var/qemu/generic\fR before executing a
 .BR qemu (1)
 instance.
 
+.SH DIAGNOSTICS
+To show the produced arguments list use the following:
+.P
+.nf
+    ~ $ qemuconf -n config.conf
+.fi
+
 .SH AUTHORS
 Enno Boland <eb@s01.de>
 
