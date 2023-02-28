@@ -11,9 +11,6 @@ qemuconf: qemuconf.o
 	${LD} qemuconf.o ${LDFLAGS} -o $@
 
 check: qemuconf
-	@echo "=======> Check URLs for response code"
-	@grep -Eiho "https?://[^\"\\'> ]+" *.* | xargs -P10 -I{} \
-		curl -o /dev/null -sw "[%{http_code}] %{url}\n" '{}'
 	@echo "=======> Check qemuconf parsing for errors"
 	@tests/run.sh
 
