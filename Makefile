@@ -17,8 +17,8 @@ check: qemuconf
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	cp -f qemuconf ${DESTDIR}${PREFIX}/bin/
-	cp -f qemuconf-import ${DESTDIR}${MANPREFIX}/man1/
+	cp -f qemuconf        ${DESTDIR}${PREFIX}/bin/
+	cp -f qemuconf-import ${DESTDIR}${PREFIX}/bin/
 	sed "s/@VERSION@/${VERSION}/g" qemuconf.1.in > \
 		${DESTDIR}${MANPREFIX}/man1/qemuconf.1
 	sed "s/@VERSION@/${VERSION}/g" qemuconf-import.1.in > \
