@@ -173,7 +173,8 @@ parseconfig(char *text, int len) {
 			if(text[i-1] == ':') {
 				text[i-1] = ',';
 				if(compact(text, i, len, curindent)) {
-					fprintf(stderr, "at line %i character %i. ", line + 1, i - linestart);
+					fprintf(stderr, "at line %i character %i. ",
+						line + 1, i - linestart);
 					return 1;
 				}
 				DROP(text[i] != '\n', i);
@@ -182,7 +183,8 @@ parseconfig(char *text, int len) {
 			addoptarg(&text[_i], i - _i);
 		}
 		else if(i == _i) {
-			fprintf(stderr, "Expected whitespace or ':' instead of '%c' at line %i character %i. ", text[i], line + 1, i - linestart);
+			fprintf(stderr, "Expected whitespace or ':' instead of '%c' at line %i character %i. ",
+				text[i], line + 1, i - linestart);
 			return 1;
 		}
 	}
@@ -255,7 +257,8 @@ int main(int argc, char *argv[]) {
 				return EXIT_SUCCESS;
 usage:
 			default:
-				printf("Usage: %s [-n] [-q exec] [-V] CONFIGFILE [-- [qemu args...]]\n", argv[0]);
+				printf("Usage: %s [-n] [-q exec] [-V] CONFIGFILE [-- [qemu args...]]\n",
+					argv[0]);
 				return EXIT_FAILURE;
 		}
 	}
