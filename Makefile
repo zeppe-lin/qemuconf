@@ -25,8 +25,8 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	cp -f ${BIN1} ${DESTDIR}${PREFIX}/bin/
 	cp -f ${MAN1} ${DESTDIR}${MANPREFIX}/man1/
-	cd ${DESTDIR}${PREFIX}/bin     && rm -f ${BIN1}
-	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f ${MAN1}
+	cd ${DESTDIR}${PREFIX}/bin     && chmod 0755 ${BIN1}
+	cd ${DESTDIR}${MANPREFIX}/man1 && chmod 0644 ${MAN1}
 
 uninstall:
 	cd ${DESTDIR}${PREFIX}/bin     && rm -f ${BIN1}
