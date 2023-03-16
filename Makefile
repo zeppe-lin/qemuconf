@@ -2,7 +2,13 @@
 
 include config.mk
 
-all: qemuconf
+BIN1 = qemuconf   qemuconf-import
+MAN1 = qemuconf.1 qemuconf-import.1
+
+all: ${BIN1} ${MAN1}
+
+%: %.in
+	sed "s/@VERSION@/${VERSION}/g" $< > $@
 
 .c.o:
 	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
@@ -17,18 +23,16 @@ check: qemuconf
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	cp -f qemuconf        ${DESTDIR}${PREFIX}/bin/
-	cp -f qemuconf-import ${DESTDIR}${PREFIX}/bin/
-	sed "s/@VERSION@/${VERSION}/g" qemuconf.1.in > \
-		${DESTDIR}${MANPREFIX}/man1/qemuconf.1
-	sed "s/@VERSION@/${VERSION}/g" qemuconf-import.1.in > \
-		${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
+	cp -f ${BIN1} ${DESTDIR}${PREFIX}/bin/
+	cp -f ${MAN1} ${DESTDIR}${MANPREFIX}/man1/
+	cd ${DESTDIR}${PREFIX}/bin     && rm -f ${BIN1}
+	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f ${MAN1}
 
 uninstall:
-	cd ${DESTDIR}${PREFIX}/bin     && rm -f qemuconf   qemuconf-import
-	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f qemuconf.1 qemuconf-import.1
+	cd ${DESTDIR}${PREFIX}/bin     && rm -f ${BIN1}
+	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f ${MAN1}
 
 clean:
-	rm -f qemuconf qemuconf.o qemuconf.1 qemuconf-import.1
+	rm -f ${BIN1} ${MAN1}
 
-.PHONY: all install uninstall check clean
+.PHONY: all check install uninstall clean
