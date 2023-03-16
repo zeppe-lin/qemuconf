@@ -33,6 +33,6 @@ uninstall:
 	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f ${MAN1}
 
 clean:
-	rm -f ${BIN1} qemuconf.o ${MAN1}
+	rm -f ${BIN1} ${BIN1}.o ${MAN1}
 
 .PHONY: all check install uninstall clean
