@@ -244,7 +244,7 @@ int main(int argc, char *argv[]) {
 	int opt;
 	int (*action)() = start;
 
-	while ((opt = getopt(argc, argv, "nq:V")) != -1) {
+	while ((opt = getopt(argc, argv, "nq:v")) != -1) {
 		switch(opt) {
 			case 'q':
 				binary = optarg;
@@ -252,12 +252,12 @@ int main(int argc, char *argv[]) {
 			case 'n':
 				action = dump;
 				break;
-			case 'V':
+			case 'v':
 				puts("qemuconf-" VERSION);
 				return EXIT_SUCCESS;
 usage:
 			default:
-				printf("Usage: %s [-n] [-q exec] [-V] CONFIGFILE [-- [qemu args...]]\n",
+				printf("Usage: %s [-n] [-q exec] [-v] CONFIGFILE [-- [qemu args...]]\n",
 					argv[0]);
 				return EXIT_FAILURE;
 		}

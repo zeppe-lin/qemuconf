@@ -11,7 +11,7 @@ qemuconf \- simple qemu launcher with config file support
 .P
 \fBqemuconf\fR [\fB-n\fR] \fICONFIG\fR
 .P
-\fBqemuconf\fR [\fB-V\fR]
+\fBqemuconf\fR [\fB-v\fR]
 
 .SH DESCRIPTION
 .B qemuconf
@@ -29,7 +29,7 @@ the \fIbinary\fR option in the configuration file.
 Print the produced argument list to stdout, instead of executing.
 Useful for diagnostic purposes.
 .TP
-.B -V
+.B -v
 Print version and exit.
 
 .SH EXAMPLES
