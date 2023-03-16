@@ -1,4 +1,5 @@
-# qemuconf version
+# project metadata
+NAME = qemuconf
 VERSION = 0.3
 
 # qemu default binary
