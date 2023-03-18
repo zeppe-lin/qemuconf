@@ -8,9 +8,15 @@
 #include <libgen.h>
 #include <ctype.h>
 
+/*
+ * Macros.
+ */
 #define DROP(x, y) { for(y = i; i < len && x; i++); }
 #define BEGINS(x, y) (strncmp(x, y, strlen(y)) == 0)
 
+/*
+ * Function declarations.
+ */
 static int start();
 static int dump();
 static int addoptarg(char *arg, int len);
@@ -19,6 +25,9 @@ static int compact(char *text, int i, int len, int minindent);
 static int parseconfig(char *text, int len);
 static int loadconfig(char *path);
 
+/*
+ * Variables.
+ */
 char **cargv;
 char **curopt = NULL;
 char *cwd = ".";
@@ -26,6 +35,9 @@ static char *binary = NULL;
 int cargc = 1;
 int maxargc = 0;
 
+/*
+ * Function implementations.
+ */
 int
 start() {
 	if(chdir(cwd)) {
