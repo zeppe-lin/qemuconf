@@ -11,8 +11,8 @@
 /*
  * Macros.
  */
-#define DROP(x, y) { for(y = i; i < len && x; i++); }
-#define BEGINS(x, y) (strncmp(x, y, strlen(y)) == 0)
+#define DROP(x, y)	{ for(y = i; i < len && x; i++); }
+#define BEGINS(x, y)	(strncmp(x, y, strlen(y)) == 0)
 
 /*
  * Function declarations.
