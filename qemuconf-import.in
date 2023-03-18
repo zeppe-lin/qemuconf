@@ -1,6 +1,5 @@
 #!/bin/sh
-# Copyright © 2015 tox <tox@rootkit>
-# Distributed under terms of the MIT license.
+# See LICENSE file for copyright and license details.
 
 # shellcheck shell=sh disable=2086
 
@@ -47,3 +46,5 @@ for proc in /proc/*/exe; do
 	read name
 	[ "$name" ] && echo "$conf" > $name
 done
+
+# End of file.
