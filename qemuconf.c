@@ -1,9 +1,4 @@
-/*
- * qemuconf.c
- * Copyright (C) 2015 tox <tox@rootkit>
- *
- * Distributed under terms of the MIT license.
- */
+/* See LICENSE file for copyright and license details. */
 
 #include <stdlib.h>
 #include <stdio.h>
