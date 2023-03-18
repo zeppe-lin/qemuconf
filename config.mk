@@ -10,7 +10,8 @@ PREFIX    = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
 # flags
-CPPFLAGS = -DVERSION=\"${VERSION}\" -DBINARY=\"${BINARY}\"
+CPPFLAGS = -DNAME=\"${NAME}\" -DVERSION=\"${VERSION}\" \
+	   -DBINARY=\"${BINARY}\"
 CFLAGS   = -pedantic -Wall -Wextra -Wformat
 LDFLAGS  =
 
