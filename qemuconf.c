@@ -61,6 +61,7 @@ dump()
 		fputs(cargv[i], stdout);
 	}
 	fputc('\n', stdout);
+	return 0;
 }
 
 int
