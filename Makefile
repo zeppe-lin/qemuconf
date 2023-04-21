@@ -34,5 +34,9 @@ uninstall:
 
 clean:
 	rm -f ${BIN1} *.o ${MAN1}
+	rm -f ${DIST}.tar.gz
 
-.PHONY: all check install uninstall clean
+dist: clean
+	git archive --format=tar.gz -o ${DIST}.tar.gz --prefix=${DIST}/ HEAD
+
+.PHONY: all check install uninstall clean dist
