@@ -1,6 +1,5 @@
 OVERVIEW
 --------
-
 This directory contains qemuconf, a tiny utility that executes qemu(1) with
 arguments from a configuration file.
 
