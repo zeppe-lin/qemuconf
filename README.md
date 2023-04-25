@@ -1,10 +1,11 @@
 OVERVIEW
 --------
-This directory contains qemuconf, a tiny utility that executes qemu(1) with
-arguments from a configuration file.
+This directory contains qemuconf, a tiny utility that executes qemu(1)
+with arguments from a configuration file.
 
-This qemuconf distribution is a fork of Gottox' qemuconf version 0.2.1, commit
-50b8369 (Thu Nov 17 2022) with the following little differences:
+This qemuconf distribution is a fork of Gottox' qemuconf version
+0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
+differences:
 - the man page have been rewritten
 - added qemuconf-import(1) man page
 - removed unnecessary service files
@@ -29,8 +30,8 @@ REQUIREMENTS
 
 INSTALL
 -------
-The shell commands `make && make install` should build and install this
-package.  See `config.mk` file for configuration parameters.
+The shell commands `make && make install` should build and install
+this package.  See `config.mk` file for configuration parameters.
 
 The shell command `make check` should start some tests.
 
