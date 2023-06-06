@@ -1,3 +1,14 @@
-qemu.runit
-qemu@.service
+# build files and artefacts
 qemuconf
+qemuconf.1
+qemuconf-import
+qemuconf-import.1
+
+# vim undo files
+.*.un~
+
+# backup files
+*.bak
+
+# dist tarballs
+*.tar.gz
