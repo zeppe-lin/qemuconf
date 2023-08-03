@@ -4,8 +4,9 @@ qemuconf.1
 qemuconf-import
 qemuconf-import.1
 
-# vim undo files
+# vim undo and swap files
 .*.un~
+*.swp
 
 # backup files
 *.bak
