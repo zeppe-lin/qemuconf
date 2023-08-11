@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
 	int opt;
 	int (*action)() = start;
 
-	while ((opt = getopt(argc, argv, "nq:v")) != -1) {
+	while ((opt = getopt(argc, argv, "q:nv")) != -1) {
 		switch (opt) {
 			case 'q':
 				binary = optarg;
