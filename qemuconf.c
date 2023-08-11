@@ -274,8 +274,7 @@ int main(int argc, char *argv[])
 				return EXIT_SUCCESS;
 usage:
 			default:
-				printf("Usage: qemuconf [-n] [-q exec] config [-- [qemu args]...]\n"
-				       "       qemuconf -v\n");
+				printf("Usage: qemuconf [-nv] [-q exec] config [-- [qemu args]...]\n");
 				return EXIT_FAILURE;
 		}
 	}
