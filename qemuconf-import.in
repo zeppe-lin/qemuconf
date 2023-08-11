@@ -4,47 +4,49 @@
 # shellcheck shell=sh disable=2086
 
 mkconfig() {
-	#exe=$(readlink $1/exe)
-	cwd=$(readlink $1/cwd)
-	unset lastopt
+	#EXE=$(readlink $1/exe)
+	_CWD=$(readlink $1/cwd)
+	echo "cwd ${_CWD}"
 
-	echo cwd "$cwd"
+	_LASTOPT=
 	printf "qemubin "
-	tr "\0" "\n" < $1/cmdline | while read arg; do
-		if [ -z "${arg%%-*}" ]; then
-			[ "$lastopt" ] && echo
-			printf "%s" "${arg#-}"
-			lastopt=1
+	tr "\0" "\n" < "$1/cmdline" | while read -r _ARG; do
+		if [ -z "${_ARG%%-*}" ]; then
+			[ "${_LASTOPT}" ] && echo
+			printf "%s" "${_ARG#-}"
+			_LASTOPT=1
 			continue
 		fi
-		lastopt=
+		_LASTOPT=
 
-		if [ "${arg##*,*}" ]; then
-			echo " ${arg}"
+		if [ "${_ARG##*,*}" ]; then
+			echo " ${_ARG}"
 			continue
 		fi
 		echo :
 
 		IFS=,
-		for i in ${arg}; do
+		for i in ${_ARG}; do
 			printf "\t%s\n" "${i}";
 		done
 		unset IFS
 	done
 }
 
-for proc in /proc/*/exe; do
-	case $(readlink $proc) in
-	*/qemu-*|*/qemu) : ;;
-	*) continue        ;;
+for _PROC in /proc/*/exe; do
+	case $(readlink ${_PROC}) in
+	*/qemu-*|*/qemu) :        ;;
+	              *) continue ;;
 	esac
-	conf=$(mkconfig ${proc%/*})
-	echo "----"
-	echo "$conf"
-	echo "----"
+
+	_CONF=$(mkconfig ${_PROC%/*})
+	echo "--------"
+	echo "${_CONF}"
+	echo "--------"
+
 	printf "Save as (enter to skip): "
-	read name
-	[ "$name" ] && echo "$conf" > $name
+	read -r _NAME
+	[ "${_NAME}" ] && echo "${_CONF}" > "${_NAME}"
 done
 
 # End of file.
