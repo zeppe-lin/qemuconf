@@ -9,7 +9,7 @@ mkconfig() {
 	unset lastopt
 
 	echo cwd "$cwd"
-	printf "binary "
+	printf "qemubin "
 	tr "\0" "\n" < $1/cmdline | while read arg; do
 		if [ -z "${arg%%-*}" ]; then
 			[ "$lastopt" ] && echo
