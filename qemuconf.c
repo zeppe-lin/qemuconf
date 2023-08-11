@@ -34,7 +34,7 @@ static int loadconfig(char *path);
 char **cargv;
 char **curopt = NULL;
 char *cwd = ".";
-static char *binary = NULL;
+static char *qemubin = NULL;
 int cargc = 1;
 int maxargc = 0;
 
@@ -49,8 +49,8 @@ start()
 		perror(cwd);
 		return 1;
 	}
-	execvp(binary, cargv);
-	perror(binary);
+	execvp(qemubin, cargv);
+	perror(qemubin);
 	return 1;
 }
 
@@ -93,8 +93,8 @@ addopt(char *opt, int len)
 	char *optdup;
 	if (BEGINS(opt, "cwd"))
 		curopt = &cwd;
-	else if (BEGINS(opt, "binary"))
-		curopt = &binary;
+	else if (BEGINS(opt, "qemubin"))
+		curopt = &qemubin;
 	else {
 		if (!(optdup = calloc(sizeof(char), len + 2))) {
 			perror("malloc");
@@ -264,7 +264,7 @@ int main(int argc, char *argv[])
 	while ((opt = getopt(argc, argv, "q:nv")) != -1) {
 		switch (opt) {
 			case 'q':
-				binary = optarg;
+				qemubin = optarg;
 				break;
 			case 'n':
 				action = dump;
@@ -298,9 +298,9 @@ usage:
 	for (; optind < argc; optind++, cargc++)
 		cargv[cargc] = argv[optind];
 
-	if (!binary)
-		binary = BINARY;
-	cargv[0] = binary;
+	if (!qemubin)
+		qemubin = QEMU_BIN;
+	cargv[0] = qemubin;
 	if (action())
 		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
