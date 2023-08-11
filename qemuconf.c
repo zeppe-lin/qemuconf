@@ -256,7 +256,8 @@ loadconfig(char *path)
 	return 0;
 }
 
-int main(int argc, char *argv[])
+int
+main(int argc, char *argv[])
 {
 	int opt;
 	int (*action)() = start;
