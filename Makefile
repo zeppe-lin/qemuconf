@@ -3,6 +3,10 @@
 include config.mk
 
 all: qemuconf
+
+.c.o:
+	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
+
 qemuconf: qemuconf.o
 
 check: qemuconf
