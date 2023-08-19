@@ -1,6 +1,5 @@
 # build files and artefacts
 qemuconf
-qemuconf.o
 
 # vim undo and swap files
 .*.un~

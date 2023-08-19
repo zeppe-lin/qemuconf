@@ -4,11 +4,6 @@ include config.mk
 
 all: qemuconf
 
-.c.o:
-	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
-
-qemuconf: qemuconf.o
-
 check: qemuconf
 	@echo "=======> Check qemuconf parsing for errors"
 	@tests/run.sh
@@ -30,7 +25,7 @@ uninstall:
 	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f qemuconf.1 qemuconf-import.1
 
 clean:
-	rm -f qemuconf qemuconf.o
+	rm -f qemuconf
 	rm -f ${DIST}.tar.gz
 
 dist: clean

@@ -11,9 +11,9 @@ PREFIX     = /usr/local
 MANPREFIX  = ${PREFIX}/share/man
 
 # flags
-CPPFLAGS   = -DNAME=\"${NAME}\" -DVERSION=\"${VERSION}\" \
+CFLAGS     = -pedantic -Wall -Wextra -Wformat \
+	     -DNAME=\"${NAME}\" -DVERSION=\"${VERSION}\" \
 	     -DQEMU_BIN=\"${QEMU_BIN}\"
-CFLAGS     = -pedantic -Wall -Wextra -Wformat
 LDFLAGS    =
 
 # compiler and linker
