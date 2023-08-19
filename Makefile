@@ -30,7 +30,7 @@ uninstall:
 	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f qemuconf.1 qemuconf-import.1
 
 clean:
-	rm -f qemuconf *.o
+	rm -f qemuconf qemuconf.o
 	rm -f ${DIST}.tar.gz
 
 dist: clean
