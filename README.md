@@ -6,10 +6,10 @@ with arguments from a configuration file.
 This qemuconf distribution is a fork of Gottox' qemuconf version
 0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
 differences:
-- BSD-style man page
-- add qemuconf-import(1) man page
+- qemuconf(1) man page in mdoc(7) format
+- qemuconf-import(1) man page
 - remove unnecessary service files
-- POSIX sh(1p) for tests and qemuconf-import(1)
+- POSIX sh(1p) for tests and qemuconf-import
 
 See git log for complete/further differences.
 
@@ -21,7 +21,7 @@ The original sources can be downloaded from:
 REQUIREMENTS
 ------------
 **Build time**:
-- c99 compiler
+- C99 compiler
 - POSIX sh(1p), make(1p) and "mandatory utilities"
 
 **Tests**:
