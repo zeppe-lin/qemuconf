@@ -271,7 +271,7 @@ main(int argc, char *argv[])
 				action = dump;
 				break;
 			case 'v':
-				puts(NAME" "VERSION);
+				puts("qemuconf "VERSION);
 				return EXIT_SUCCESS;
 usage:
 			default:
