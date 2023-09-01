@@ -1,5 +1,14 @@
 TODO qemuconf
 
-	- [ ] Switch to getopt_long?
+	qemuconf.{c,1}:
+	- [ ] GNU-style options/usage: getopt_long
+	      -q, --qemubin
+	      -n, --dry-run
+	      -v, --version
+	      -h, --help
+
+	qemuconf-import{,.1}:
+	- [ ] GNU-style options/usage:
+	      -v/--version, -h/--help
 
 End of file.
