@@ -1,16 +1,20 @@
+.\" qemuconf(1) manual page
 .\" See LICENSE file for copyright and license details.
 .Dd August 11, 2023
 .Dt QEMUCONF 1
 .Os qemuconf @VERSION@
+.\" ==================================================================
 .Sh NAME
 .Nm qemuconf
 .Nd simple qemu launcher with configuration files support
+.\" ==================================================================
 .Sh SYNOPSIS
 .Nm
 .Op Fl nv
 .Op Fl q Ar exec
 .Aq Ar config
 .Op Fl - Ar qemu_options ...
+.\" ==================================================================
 .Sh DESCRIPTION
 .Nm
 executes
@@ -33,6 +37,7 @@ option in the configuration file.
 .It Fl v
 Print version and exit.
 .El
+.\" ==================================================================
 .Sh EXAMPLES
 Lets say we have the following configuration file:
 .Bd -literal -offset indent
@@ -81,9 +86,11 @@ into
 before executing a
 .Xr qemu 1
 instance.
+.\" ==================================================================
 .Sh SEE ALSO
 .Xr qemu 1 ,
 .Xr qemuconf-import 1
+.\" ==================================================================
 .Sh AUTHORS
 .Nm
 was written by
