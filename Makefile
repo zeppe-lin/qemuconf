@@ -13,16 +13,20 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	cp -f qemuconf ${DESTDIR}${PREFIX}/bin/
 	cp -f qemuconf-import ${DESTDIR}${PREFIX}/bin/
-	sed "s/@VERSION@/${VERSION}/g" qemuconf.1 \
+	sed "s/^\.Os/.Os ${NAME} ${VERSION}/" qemuconf.1 \
 		> ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
-	sed "s/@VERSION@/${VERSION}/g" qemuconf-import.1 \
+	sed "s/^\.Os/.Os ${NAME} ${VERSION}/" qemuconf-import.1 \
 		> ${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
-	cd ${DESTDIR}${PREFIX}/bin     && chmod 0755 qemuconf   qemuconf-import
-	cd ${DESTDIR}${MANPREFIX}/man1 && chmod 0644 qemuconf.1 qemuconf-import.1
+	chmod 0755 ${DESTDIR}${PREFIX}/bin/qemuconf
+	chmod 0755 ${DESTDIR}${PREFIX}/bin/qemuconf-import
+	chmod 0644 ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
+	chmod 0644 ${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
 
 uninstall:
-	cd ${DESTDIR}${PREFIX}/bin     && rm -f qemuconf   qemuconf-import
-	cd ${DESTDIR}${MANPREFIX}/man1 && rm -f qemuconf.1 qemuconf-import.1
+	rm -f ${DESTDIR}${PREFIX}/bin/qemuconf
+	rm -f ${DESTDIR}${PREFIX}/bin/qemuconf-import
+	rm -f ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
+	rm -f ${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
 
 clean:
 	rm -f qemuconf
