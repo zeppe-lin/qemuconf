@@ -13,10 +13,8 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	cp -f qemuconf ${DESTDIR}${PREFIX}/bin/
 	cp -f qemuconf-import ${DESTDIR}${PREFIX}/bin/
-	sed "s/^\.Os/.Os ${NAME} ${VERSION}/" qemuconf.1 \
-		> ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
-	sed "s/^\.Os/.Os ${NAME} ${VERSION}/" qemuconf-import.1 \
-		> ${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
+	cp -f qemuconf.1 ${DESTDIR}${MANPREFIX}/man1/
+	cp -f qemuconf-import.1 ${DESTDIR}${MANPREFIX}/man1/
 	chmod 0755 ${DESTDIR}${PREFIX}/bin/qemuconf
 	chmod 0755 ${DESTDIR}${PREFIX}/bin/qemuconf-import
 	chmod 0644 ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
