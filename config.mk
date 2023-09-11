@@ -1,16 +1,16 @@
 # project metadata
-NAME       = qemuconf
-VERSION    = 0.4.3z
-DIST       = ${NAME}-${VERSION}
+NAME      = qemuconf
+VERSION   = 0.4.3z
+DIST      = ${NAME}-${VERSION}
 
 # qemu default binary
-QEMU_BIN   = qemu-system-x86_64
+QEMU_BIN  = qemu-system-x86_64
 
 # paths
-PREFIX     = /usr/local
-MANPREFIX  = ${PREFIX}/share/man
+PREFIX    = /usr/local
+MANPREFIX = ${PREFIX}/share/man
 
 # flags
-CFLAGS     = -pedantic -Wall -Wextra -Wformat -D_DEFAULT_SOURCE \
-	     -DVERSION=\"${VERSION}\" -DQEMU_BIN=\"${QEMU_BIN}\"
-LDFLAGS    =
+CFLAGS    = -pedantic -Wall -Wextra -Wformat -D_DEFAULT_SOURCE \
+	    -DVERSION=\"${VERSION}\" -DQEMU_BIN=\"${QEMU_BIN}\"
+LDFLAGS   =
