@@ -42,11 +42,11 @@ Print version and exit.
 Lets say we have the following configuration file:
 .Bd -literal -offset indent
 #
-# /etc/qemuconf.d/generic.conf: configuration file for qemuconf(1)
+# /etc/qemuconf.d/main.conf: configuration file for qemuconf(1)
 #
 
 qemubin /usr/bin/qemu-system-x86_64
-cwd     /var/qemu/generic
+cwd     /var/qemu/main
 smp     2
 m       1024
 enable-kvm
@@ -82,7 +82,7 @@ option instructs
 to
 .Xr chdir 2
 into
-.Pa /var/qemu/generic
+.Pa /var/qemu/main
 before executing a
 .Xr qemu 1
 instance.
