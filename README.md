@@ -35,8 +35,7 @@ INSTALL
 =======
 
 The shell commands `make && make install` should build and install this
-package.
-The shell command `make check` should start some tests.
+package.  The command `make check` should start some tests.
 
 See `config.mk` file for configuration parameters.
 
