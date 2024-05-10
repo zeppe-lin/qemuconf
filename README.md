@@ -6,16 +6,16 @@ arguments from a configuration file.
 
 This qemuconf distribution is a fork of Gottox' qemuconf version 0.2.1, commit
 50b8369 (Thu Nov 17 2022) with the following little differences:
-* qemuconf(1) manual page in mdoc(7) format
-* qemuconf-import(1) manual page
-* remove unnecessary service files
-* POSIX sh(1p) for tests and qemuconf-import
+  * qemuconf(1) manual page in mdoc(7) format
+  * qemuconf-import(1) manual page
+  * remove unnecessary service files
+  * POSIX sh(1p) for tests and qemuconf-import
 
 See git log for complete/further differences.
 
 The original sources can be downloaded from:
-1. https://github.com/Gottox/qemuconf
-2. https://github.com/Gottox/qemuconf/archive/50b8369/qemuconf-50b8369.zip
+  1. https://github.com/Gottox/qemuconf
+  2. https://github.com/Gottox/qemuconf/archive/50b8369/qemuconf-50b8369.zip
 
 
 REQUIREMENTS
@@ -23,12 +23,12 @@ REQUIREMENTS
 
 Build time
 ----------
-* C99 compiler
-* POSIX sh(1p), make(1p) and "mandatory utilities"
+  * C99 compiler
+  * POSIX sh(1p), make(1p) and "mandatory utilities"
 
 Tests
 -----
-* POSIX sh(1p), make(1p) and "mandatory utilities"
+  * POSIX sh(1p), make(1p) and "mandatory utilities"
 
 
 INSTALL
