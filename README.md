@@ -37,7 +37,7 @@ INSTALL
 The shell commands `make && make install` should build and install this
 package.
 
-The command `make check` should start some tests.
+The shell command `make check` should start some tests.
 
 See `config.mk` file for configuration parameters.
 
