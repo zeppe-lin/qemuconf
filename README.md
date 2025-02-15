@@ -43,6 +43,17 @@ The shell command `make check` should start some tests.
 See `config.mk` file for configuration parameters.
 
 
+DOCUMENTATION
+=============
+
+Online documentation
+--------------------
+
+Manual pages:
+- [qemuconf-import.1](https://zeppe-lin.github.io/qemuconf-import.1.html)
+- [qemuconf.1](https://zeppe-lin.github.io/qemuconf.1.html)
+
+
 LICENSE
 =======
 
