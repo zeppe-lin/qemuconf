@@ -7,6 +7,7 @@
 #include <string.h>
 #include <libgen.h>
 #include <ctype.h>
+#include <getopt.h>
 
 /*
  * Macros.
@@ -26,6 +27,8 @@ static int addopt(char *opt, int len);
 static int compact(char *text, int i, int len, int minindent);
 static int parseconfig(char *text, int len);
 static int loadconfig(char *path);
+static void print_version();
+static void print_help();
 
 /*
  * Variables.
@@ -256,13 +259,43 @@ loadconfig(char *path)
 	return 0;
 }
 
+static void
+print_version()
+{
+	printf("qemuconf "VERSION);
+}
+
+static void
+print_help()
+{
+	printf("Usage: qemuconf [OPTIONS] config [-- [qemu_options]...]\n"
+	       "Simple Qemu launcher with configuration files support\n\n"
+	       "Options:\n"
+	       "  -q EXEC, --qemubin=EXEC  Path to qemu binary (default: " QEMU_BIN ").\n"
+	       "  -n,      --no-execute    Dump qemu command line to stdout, don't execute.\n"
+	       "  -v,      --version       Print version and exit.\n"
+	       "  -h,      --help          Show this help message and exit.\n\n"
+	       "Arguments:\n"
+	       "  config                   Configuration file path.\n"
+	       "  -- [qemu_options]...     Optional arguments passed directly to qemu.\n");
+}
+
+
 int
 main(int argc, char *argv[])
 {
 	int opt;
 	int (*action)() = start;
 
-	while ((opt = getopt(argc, argv, "q:nv")) != -1) {
+	static struct option long_options[] = {
+		{"qemubin",    required_argument, 0, 'q'},
+		{"no-execute", no_argument,       0, 'n'},
+		{"version",    no_argument,       0, 'v'},
+		{"help",       no_argument,       0, 'h'},
+		{0,            0,                 0,  0 }
+	};
+
+	while ((opt = getopt_long(argc, argv, "q:nvh", long_options, NULL)) != -1) {
 		switch (opt) {
 			case 'q':
 				qemubin = optarg;
@@ -271,16 +304,22 @@ main(int argc, char *argv[])
 				action = dump;
 				break;
 			case 'v':
-				puts("qemuconf "VERSION);
+				print_version();
 				return EXIT_SUCCESS;
-usage:
+			case 'h':
+				print_help();
+				return EXIT_SUCCESS;
+			case '?':
 			default:
-				printf("Usage: qemuconf [-nv] [-q exec] config [-- [qemu_options]...]\n");
+				print_help();
 				return EXIT_FAILURE;
 		}
 	}
-	if (optind >= argc)
-		goto usage;
+
+	if (optind >= argc) {
+		print_help();
+		return EXIT_FAILURE;
+	}
 
 	if ((maxargc = sysconf(_SC_ARG_MAX)) < 0) {
 		perror("sysconf");
