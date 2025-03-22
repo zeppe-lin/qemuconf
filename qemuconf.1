@@ -25,17 +25,19 @@ configuration file.
 .Pp
 The options are as follows:
 .Bl -tag -width XXXXXXX
-.It Fl n
+.It Fl n , Fl \-no\-execute
 Dry-run.
 Print the produced argument list to stdout, instead of executing.
 Useful for diagnostic purposes.
-.It Fl q Ar exec
+.It Fl q Ar exec , Fl \-qemubin Ns = Ns Ar exec
 Set the default qemu binary.
 This option may be overwritten by the
 .Aq Ar qemubin
 option in the configuration file.
-.It Fl v
+.It Fl v , Fl \-version
 Print version and exit.
+.It Fl h , Fl \-help
+Print help and exit.
 .El
 .\" ==================================================================
 .Sh EXAMPLES
