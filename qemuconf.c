@@ -285,20 +285,21 @@ int
 main(int argc, char *argv[])
 {
 	int opt;
+	char *cmdline_qemubin = NULL;
 	int (*action)() = start;
 
 	static struct option long_options[] = {
-		{"qemubin",    required_argument, 0, 'q'},
-		{"no-execute", no_argument,       0, 'n'},
-		{"version",    no_argument,       0, 'v'},
-		{"help",       no_argument,       0, 'h'},
-		{0,            0,                 0,  0 }
+		{"qemubin",    required_argument, NULL, 'q'},
+		{"no-execute", no_argument,       NULL, 'n'},
+		{"version",    no_argument,       NULL, 'v'},
+		{"help",       no_argument,       NULL, 'h'},
+		{0,            0,                 NULL,  0 }
 	};
 
-	while ((opt = getopt_long(argc, argv, "q:nvh", long_options, NULL)) != -1) {
+	while ((opt = getopt_long(argc, argv, "hnq:v", long_options, 0)) != -1) {
 		switch (opt) {
 			case 'q':
-				qemubin = optarg;
+				cmdline_qemubin = optarg;
 				break;
 			case 'n':
 				action = dump;
@@ -337,11 +338,13 @@ main(int argc, char *argv[])
 	for (; optind < argc; optind++, cargc++)
 		cargv[cargc] = argv[optind];
 
-	if (!qemubin)
-		qemubin = QEMU_BIN;
-	cargv[0] = qemubin;
+	if (cmdline_qemubin) cargv[0] = cmdline_qemubin;
+	else if (qemubin)    cargv[0] = qemubin;
+	else                 cargv[0] = QEMU_BIN;
+
 	if (action())
 		return EXIT_FAILURE;
+
 	return EXIT_SUCCESS;
 }
 
