@@ -10,6 +10,8 @@ differences:
   * qemuconf(1) manual page in mdoc(7) format
   * qemuconf-import(1) manual page
   * remove unnecessary service files
+  * long cmdline options
+  * cmdline -q/--qemubin option overrides config setting
   * POSIX sh(1p) for tests and qemuconf-import
 
 See git log for complete/further differences.
