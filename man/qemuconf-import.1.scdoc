@@ -1,0 +1,27 @@
+QEMUCONF-IMPORT(1)
+
+# NAME
+
+qemuconf-import - make qemuconf file from currently running qemu instance
+
+# SYNOPSIS
+
+*qemuconf-import* [*-hv*]
+
+# DESCRIPTION
+
+*qemuconf-import* creates configuration file for *qemuconf*(1) from
+currently running *qemu*(1) instance.
+
+# SEE ALSO
+
+*qemu*(1), *qemuconf*(1)
+
+# AUTHORS
+
+Originally written by Enno T. Boland <eb@s01.de>.
+
+This implementation was re-worked by Alexandr Savca
+<alexandr.savca89@gmail.com>.
+
+; vim: ft=scdoc cc=72 tw=70

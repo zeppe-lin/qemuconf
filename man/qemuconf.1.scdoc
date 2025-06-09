@@ -1,0 +1,87 @@
+QEMUCONF(1)
+
+# NAME
+
+qemuconf - simple qemu launcher with configuration files support
+
+# SYNOPSIS
+
+*qemuconf* [*-nv*] [*-q* _exec_] _conffile_ [*--* _qemu_options_ ...]
+
+# DESCRIPTION
+
+*qemuconf* executes *qemu*(1) with arguments compiled from a
+_conffile_ configuration file.
+
+The options are as follows:
+
+*-n*, *--no-execute*
+	Dry-run.  Print the produced argument list to stdout, instead
+	of executing.  Useful for diagnostic purposes.
+
+*-q* _exec_, *--qemubin*=_exec_
+	Set the default qemu binary.  This option overrides the
+	*qemubin* setting in the configuration file, if one is
+	specified.
+
+*-v*, *--version*
+	Print version and exit.
+
+*-h*, *--help*
+	Print help and exit.
+
+# EXAMPLES
+
+Lets say we have the following configuration file:
+
+```
+#
+# /etc/qemuconf.d/main.conf: configuration file for qemuconf(1)
+#
+
+qemubin /usr/bin/qemu-system-x86_64
+cwd     /var/qemu/main
+smp     2
+m       1024
+enable-kvm
+drive:
+  if      virtio
+  file    hda.img
+net nic:
+  vlan    0
+  model   virtio
+  macaddr 82:82:9D:AF:F0:1C
+net user:
+  vlan    0
+vnc 127.0.0.1:1
+
+# End of file.
+```
+
+This configuration file will be translated by *qemuconf* into the
+following command:
+
+```
+/usr/bin/qemu-system-x86_64 -smp 2 -m 1024 -enable-kvm \\
+  -drive if=virtio,file=hda.img \\
+  -net nic,vlan=0,model=virtio,macaddr=82:82:9D:AF:F0:1C \\
+  -net user,vlan=0 \\
+  -vnc 127.0.0.1:1
+```
+
+The *cwd* option instructs *qemuconf* to *chdir*(2) into
+_/var/qemu/main_ before executing a *qemu*(1) instance.
+
+# SEE ALSO
+
+*qemu*(1),
+*qemuconf-import*(1)
+
+# AUTHORS
+
+Originally written by Enno T. Boland <eb@s01.de>.
+
+This implementation was re-worked by
+Alexandr Savca <alexandr.savca89@gmail.com>.
+
+; vim: ft=scdoc cc=72 tw=70
