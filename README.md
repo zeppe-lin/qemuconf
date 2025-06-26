@@ -1,18 +1,18 @@
 OVERVIEW
 ========
 
-This repository contains qemuconf, a tiny utility that executes
-qemu(1) with arguments from a configuration file.
+This repository contains `qemuconf`, a tiny utility that executes
+`qemu(1)` with arguments from a configuration file.
 
-This qemuconf distribution is a fork of Gottox' qemuconf version
+This `qemuconf` distribution is a fork of Gottox' `qemuconf` version
 0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
 differences:
-  * qemuconf(1) manual page in mdoc(7) format
-  * qemuconf-import(1) manual page
+  * `qemuconf(1)` manual page in `mdoc(7)` format
+  * `qemuconf-import(1)` manual page
   * remove unnecessary service files
   * long cmdline options
-  * cmdline -q/--qemubin option overrides config setting
-  * POSIX sh(1p) for tests and qemuconf-import
+  * cmdline `-q/--qemubin` option overrides config setting
+  * POSIX `sh(1p)` for tests and `qemuconf-import`
 
 See git log for complete/further differences.
 
@@ -27,11 +27,11 @@ REQUIREMENTS
 Build time
 ----------
   * C99 compiler
-  * POSIX sh(1p), make(1p) and "mandatory utilities"
+  * POSIX `sh(1p)`, `make(1p)` and "mandatory utilities"
 
 Tests
 -----
-  * POSIX sh(1p), make(1p) and "mandatory utilities"
+  * POSIX `sh(1p)`, `make(1p)` and "mandatory utilities"
 
 
 INSTALL
@@ -59,5 +59,5 @@ Manual pages:
 LICENSE
 =======
 
-qemuconf is licensed through MIT License.
+`qemuconf` is licensed through MIT License.
 See LICENSE file for copyright and license details.
