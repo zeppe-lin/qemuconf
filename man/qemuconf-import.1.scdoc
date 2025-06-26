@@ -13,6 +13,14 @@ qemuconf-import - make qemuconf file from currently running qemu instance
 *qemuconf-import* creates configuration file for *qemuconf*(1) from
 currently running *qemu*(1) instance.
 
+The options are as follows:
+
+*-v*, *--version*
+	Print version and exit.
+
+*-h*, *--help*
+	Print help and exit.
+
 # SEE ALSO
 
 *qemu*(1), *qemuconf*(1)
