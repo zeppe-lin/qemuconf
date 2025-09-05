@@ -29,7 +29,6 @@ The options are as follows:
 
 Originally written by Enno T. Boland <eb@s01.de>.
 
-This implementation was re-worked by Alexandr Savca
-<alexandr.savca89@gmail.com>.
+Reworked for Zeppe-Lin by Alexandr Savca <alexandr.savca89@gmail.com>.
 
 ; vim: ft=scdoc cc=72 tw=70
