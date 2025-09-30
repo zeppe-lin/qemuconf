@@ -1,0 +1,2 @@
+q -m "1024" -smp 2  # inline comment -enable-kvm -snapshot -unknown foo=bar,baz=qux -foo bar,baz,qux
+

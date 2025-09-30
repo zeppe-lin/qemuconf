@@ -1,0 +1,2 @@
+q -drive if=virtio,file=disk1.img -drive if=ide,file=disk2.img -net nic,vlan=1,model=e1000 -net user,vlan=1
+
