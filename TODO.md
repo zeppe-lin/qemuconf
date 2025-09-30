@@ -4,6 +4,7 @@ TODO qemuconf
 
 Next Release
 ------------
+
 - [ ] GNU-style options/usage:
       https://github.com/zeppe-lin/qemuconf/issues/1
 
@@ -17,4 +18,8 @@ Next Release
     - [ ] use GNU `getopt(1)` for opts parsing
     - [ ] add `-v/--version` and `-h/--help` opts
 
-- [ ] Rework tests.
+
+Done
+----
+
+- [x] Rework tests.
