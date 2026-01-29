@@ -2,7 +2,7 @@
 
 include ../config.mk
 
-MAN1 = qemuconf.1 qemuconf-import.1
+MAN1 = qemuconf.1 qemuconf-mkconfig.1
 
 all: $(MAN1)
 
