@@ -13,6 +13,6 @@ check:
 	@tests/runner.sh
 
 release:
-	git tag -a $(VERSION) -m $(VERSION)
+	git tag -a v$(VERSION) -m v$(VERSION)
 
 .PHONY: all install uninstall clean release
