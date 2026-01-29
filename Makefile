@@ -2,38 +2,17 @@
 
 include config.mk
 
-all: qemuconf
+SUBDIRS = man src
 
-check: qemuconf
+all install uninstall clean:
+	for subdir in $(SUBDIRS); do (cd $$subdir; $(MAKE) $@); done
+
+check:
+	(cd src; $(MAKE) all)
 	@echo "=======> Check qemuconf parsing for errors"
-	@tests/run.sh
-
-install: all
-	mkdir -p ${DESTDIR}${PREFIX}/bin
-	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	cp -f qemuconf ${DESTDIR}${PREFIX}/bin/
-	cp -f qemuconf-import ${DESTDIR}${PREFIX}/bin/
-	cp -f qemuconf.1 ${DESTDIR}${MANPREFIX}/man1/
-	cp -f qemuconf-import.1 ${DESTDIR}${MANPREFIX}/man1/
-	chmod 0755 ${DESTDIR}${PREFIX}/bin/qemuconf
-	chmod 0755 ${DESTDIR}${PREFIX}/bin/qemuconf-import
-	chmod 0644 ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
-	chmod 0644 ${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
-
-uninstall:
-	rm -f ${DESTDIR}${PREFIX}/bin/qemuconf
-	rm -f ${DESTDIR}${PREFIX}/bin/qemuconf-import
-	rm -f ${DESTDIR}${MANPREFIX}/man1/qemuconf.1
-	rm -f ${DESTDIR}${MANPREFIX}/man1/qemuconf-import.1
-
-clean:
-	rm -f qemuconf
-	rm -f ${DIST}.tar.gz
+	@tests/runner.sh
 
 release:
-	git tag -a v${VERSION} -m v${VERSION}
+	git tag -a $(VERSION) -m $(VERSION)
 
-dist: clean
-	git archive --format=tar.gz -o ${DIST}.tar.gz --prefix=${DIST}/ HEAD
-
-.PHONY: all check install uninstall clean release dist
+.PHONY: all install uninstall clean release
