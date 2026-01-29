@@ -6,23 +6,25 @@ qemuconf - simple qemu launcher with configuration files support
 
 # SYNOPSIS
 
-*qemuconf* [*-nv*] [*-q* _exec_] _conffile_ [*--* _qemu_options_ ...]
+*qemuconf* [*-nv*] [*-q* _exec_] _config-file_ [*--* _qemu-args_ ...]
 
 # DESCRIPTION
 
 *qemuconf* executes *qemu*(1) with arguments compiled from a
-_conffile_ configuration file.
+_config-file_.
 
 The options are as follows:
 
 *-n*, *--no-execute*
-	Dry-run.  Print the produced argument list to stdout, instead
-	of executing.  Useful for diagnostic purposes.
+	Dry-run.
+	Print the produced argument list to stdout, instead of
+	executing.
+	Useful for diagnostic purposes.
 
 *-q* _exec_, *--qemubin*=_exec_
-	Set the default qemu binary.  This option overrides the
-	*qemubin* setting in the configuration file, if one is
-	specified.
+	Set the default qemu binary.
+	This option overrides the *qemubin* setting in the
+	configuration file, if one is specified.
 
 *-v*, *--version*
 	Print version and exit.
