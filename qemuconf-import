@@ -1,52 +1,177 @@
 #!/bin/sh
+# qemuconf-mkconfig - generate configuration snippets from running processes
 # See LICENSE file for copyright and license details.
 
-# shellcheck shell=sh disable=2086
+######################################################################
+# Section: Error codes                                               #
+######################################################################
 
-mkconfig() {
-	#EXE=$(readlink $1/exe)
-	_CWD=$(readlink $1/cwd)
-	echo "cwd ${_CWD}"
+readonly E_GENERAL=1      # General error
+readonly E_INTERRUPT=130  # Interrupted by signal
 
-	_LASTOPT=
-	printf "qemubin "
-	tr "\0" "\n" < "$1/cmdline" | while read -r _ARG; do
-		if [ -z "${_ARG%%-*}" ]; then
-			[ "${_LASTOPT}" ] && echo
-			printf "%s" "${_ARG#-}"
-			_LASTOPT=1
-			continue
-		fi
-		_LASTOPT=
+######################################################################
+# Section: Notification helpers                                      #
+######################################################################
 
-		if [ "${_ARG##*,*}" ]; then
-			echo " ${_ARG}"
-			continue
-		fi
-		echo :
-
-		IFS=,
-		for i in ${_ARG}; do
-			printf "\t%s\n" "${i}";
-		done
-		unset IFS
-	done
+# info - Print an informational message to stdout.
+info() {
+	printf "=======> %s\n" "$1"
 }
 
-for _PROC in /proc/*/exe; do
-	case $(readlink ${_PROC}) in
-	*/qemu-*|*/qemu) :        ;;
-	              *) continue ;;
+# error - Print an error message to stderr.
+error() {
+	info "ERROR: %s" "$1" 1>&2
+}
+
+######################################################################
+# Section: Exit hooks                                                #
+######################################################################
+
+# interrupted - Handle script interruption signals.
+# shellcheck disable=2317
+interrupted() {
+	printf "\n" 1>&2
+	info "Interrupted." 1>&2
+	exit $E_INTERRUPT
+}
+
+# atexit - Cleanup function executed upon script exit.
+# shellcheck disable=2317
+atexit() {
+	:
+}
+
+######################################################################
+# Section: Core functionality                                        #
+######################################################################
+
+# generate_qemu_config - Generate config snippet from a /proc/[pid] path.
+# Args:
+#    $1: The /proc/[pid] path.
+generate_qemu_config() {
+	local __proc_path="$1"
+	local __cwd __arg __last_opt __first=1
+
+	[ -r "${__proc_path}/cmdline" ] || return 1
+	__cwd=$(readlink "${__proc_path}/cwd") || return 1
+
+	printf "cwd %s\n" "${__cwd}"
+	printf "qemubin "
+
+	__last_opt=0
+	# Process null-terminated cmdline using tr to handle delimiters
+	tr "\0" "\n" < "${__proc_path}/cmdline" | while read -r __arg; do
+		# Skip the executable itself
+		if [ "$__first" -eq 1 ]; then
+			__first=0; continue
+		fi
+
+		# Argument is an option (starts with -)
+		if [ -z "${__arg%%-*}" ]; then
+			[ "$__last_opt" -eq 1 ] && printf "\n"
+			printf "%s" "${__arg#-}"
+			__last_opt=1
+			continue
+		fi
+		__last_opt=0
+
+		# Argument is a value
+		case "$__arg" in
+			*,*) 
+				printf ":\n"
+				(
+					IFS=,
+					for __item in $__arg; do
+						printf "\t%s\n" "$__item"
+					done
+				)
+				;;
+			*)
+				printf " %s" "$__arg"
+				;;
+		esac
+	done
+	printf "\n"
+}
+
+# is_qemu - Check if the executable link points to a QEMU binary.
+is_qemu() {
+	case "$(readlink "$1" 2>/dev/null)" in
+		*/qemu-* | */qemu) return 0 ;;
+		*) return 1 ;;
+	esac
+}
+
+# process_qemu - Prompt user to save configuration for a specific PID.
+process_qemu() {
+	local __proc="$1"
+	local __conf __name
+
+	info "Inspecting ${__proc##*/}"
+
+	if __conf=$(generate_qemu_config "$__proc"); then
+		printf "------------------------------------------------------\n"
+		printf "%s" "$__conf"
+		printf "------------------------------------------------------\n"
+
+		printf "Save as (enter to skip): "
+		read -r __name < /dev/tty || return 1
+
+		if [ -n "$__name" ]; then
+			printf "%s" "$__conf" > "$__name"
+			info "Saved to $__name"
+		fi
+	else
+		error "Failed to generate config for $__proc"
+	fi
+}
+
+######################################################################
+# Section: Command-line helpers                                      #
+######################################################################
+
+# print_help - Print usage information.
+print_help() {
+	cat <<EOF
+Usage: $ARGV0 [-hv]
+Generate qemu configuration snippets from running processes.
+EOF
+}
+
+######################################################################
+# Section: Main execution logic                                      #
+######################################################################
+
+# main - The main entry point of the script.
+main() {
+	case "$1" in
+		-h | --help    ) print_help;              exit 0 ;;
+		-v | --version ) echo "$ARGV0 @VERSION@"; exit 0 ;;
 	esac
 
-	_CONF=$(mkconfig ${_PROC%/*})
-	echo "--------"
-	echo "${_CONF}"
-	echo "--------"
+	# Iterate through /proc. Looking for 'exe' symlinks.
+	for __proc_exe in /proc/[0-9]*/exe; do
+		if is_qemu "$__proc_exe"; then
+			process_qemu "${__proc_exe%/*}"
+		fi
+	done
 
-	printf "Save as (enter to skip): "
-	read -r _NAME
-	[ "${_NAME}" ] && echo "${_CONF}" > "${_NAME}"
-done
+	info "Finished processing processes."
+}
 
+######################################################################
+# Section: Script initialization                                     #
+######################################################################
+
+set -ef
+
+trap "interrupted" HUP INT QUIT TERM
+trap "atexit"      EXIT
+
+export LC_ALL=POSIX
+readonly ARGV0="${0##*/}"
+
+main "$@"
+
+# vim: ft=sh cc=72 tw=70
 # End of file.
