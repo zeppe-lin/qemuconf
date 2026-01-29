@@ -1,16 +1,16 @@
-QEMUCONF-IMPORT(1)
+qemuconf-mkconfig(1)
 
 # NAME
 
-qemuconf-import - make qemuconf file from currently running qemu instance
+qemuconf-mkconfig - make qemuconf file from currently running qemu instance
 
 # SYNOPSIS
 
-*qemuconf-import* [*-hv*]
+*qemuconf-mkconfig* [*-hv*]
 
 # DESCRIPTION
 
-*qemuconf-import* creates configuration file for *qemuconf*(1) from
+*qemuconf-mkconfig* creates configuration file for *qemuconf*(1) from
 currently running *qemu*(1) instance.
 
 The options are as follows:

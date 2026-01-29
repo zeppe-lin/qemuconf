@@ -77,7 +77,7 @@ _/var/qemu/main_ before executing a *qemu*(1) instance.
 # SEE ALSO
 
 *qemu*(1),
-*qemuconf-import*(1)
+*qemuconf-mkconfig*(1)
 
 # AUTHORS
 
