@@ -3,7 +3,7 @@
 
 cd "$(dirname "$(which "$0")")" || exit 1
 
-QEMUCONF="../qemuconf -n"
+QEMUCONF="../src/qemuconf -n"
 DIR="./data"
 
 # Loop over all .conf files.
