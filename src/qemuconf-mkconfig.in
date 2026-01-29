@@ -135,6 +135,9 @@ print_help() {
 	cat <<EOF
 Usage: $ARGV0 [-hv]
 Generate qemu configuration snippets from running processes.
+
+  -v, --version  Print version and exit
+  -h, --help     Print this help and exit
 EOF
 }
 
