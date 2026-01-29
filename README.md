@@ -7,12 +7,13 @@ This repository contains `qemuconf`, a tiny utility that executes
 This `qemuconf` distribution is a fork of Gottox' `qemuconf` version
 0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
 differences:
-  * `qemuconf(1)` manual page in `mdoc(7)` format
-  * `qemuconf-import(1)` manual page
+  * `qemuconf(1)` manual page in `scdoc(5)` format
+  * `qemuconf-import` -> `qemuconf-mkconfig`
+  * `qemuconf-mkconfig(1)` manual page
   * remove unnecessary service files
   * long cmdline options
   * cmdline `-q/--qemubin` option overrides config setting
-  * POSIX `sh(1p)` for tests and `qemuconf-import`
+  * POSIX `sh(1p)` for tests and `qemuconf-mkconfig`
 
 See git log for complete/further differences.
 
@@ -28,6 +29,7 @@ Build time
 ----------
   * C99 compiler
   * POSIX `sh(1p)`, `make(1p)` and "mandatory utilities"
+  * `scdoc(1)` to build manual pages
 
 Tests
 -----
@@ -51,13 +53,12 @@ DOCUMENTATION
 Online documentation
 --------------------
 
-Manual pages:
-- [qemuconf-import.1](https://zeppe-lin.github.io/qemuconf-import.1.html)
-- [qemuconf.1](https://zeppe-lin.github.io/qemuconf.1.html)
+See `/man`.
 
 
 LICENSE
 =======
 
 `qemuconf` is licensed through MIT License.
+
 See LICENSE file for copyright and license details.
