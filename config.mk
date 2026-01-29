@@ -1,7 +1,6 @@
 # project metadata
 NAME      = qemuconf
-VERSION   = 0.4.4.1
-DIST      = ${NAME}-${VERSION}
+VERSION   = 0.5
 
 # qemu default binary
 QEMU_BIN  = qemu-system-x86_64
