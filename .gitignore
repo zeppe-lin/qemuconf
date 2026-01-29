@@ -1,6 +1,3 @@
-# build files and artefacts
-qemuconf
-
 # vim undo and swap files
 .*.un~
 *.swp
