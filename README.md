@@ -1,64 +1,73 @@
 OVERVIEW
 ========
 
-This repository contains `qemuconf`, a tiny utility that executes
-`qemu(1)` with arguments from a configuration file.
+`qemuconf` is a small utility that runs `qemu(1)` with arguments
+provided from a configuration file.
 
-This `qemuconf` distribution is a fork of Gottox' `qemuconf` version
-0.2.1, commit 50b8369 (Thu Nov 17 2022) with the following little
-differences:
-  * `qemuconf(1)` manual page in `scdoc(5)` format
-  * `qemuconf-import` -> `qemuconf-mkconfig`
-  * `qemuconf-mkconfig(1)` manual page
-  * remove unnecessary service files
-  * long cmdline options
-  * cmdline `-q/--qemubin` option overrides config setting
-  * POSIX `sh(1p)` for tests and `qemuconf-mkconfig`
+This distribution is a fork of Gottox's `qemuconf` version 0.2.1
+(commit 50b8369, Thu Nov 17 2022), with the following differences:
+  * Manual page for `qemuconf(1)` in `scdoc(5)` format
+  * Renamed `qemuconf-import` to `qemuconf-mkconfig`
+  * Added manual page for `qemuconf-mkconfig(1)`
+  * Remove unnecessary service files
+  * Added long command-line options
+  * `-q`/`--qemubin` options override config setting
+  * POSIX `sh(1p)` used for tests and `qemuconf-mkconfig`
 
-See git log for complete/further differences.
+See the git log for full history.
 
-The original sources can be downloaded from:
+Original sources:
   1. https://github.com/Gottox/qemuconf
   2. https://github.com/Gottox/qemuconf/archive/50b8369/qemuconf-50b8369.zip
 
+---
 
 REQUIREMENTS
 ============
 
-Build time
+Build-time
 ----------
   * C99 compiler
-  * POSIX `sh(1p)`, `make(1p)` and "mandatory utilities"
-  * `scdoc(1)` to build manual pages
+  * POSIX `sh(1p)`, `make(1p)`, and "mandatory utilities"
+  * `scdoc(1)` to generate manual pages
 
 Tests
 -----
-  * POSIX `sh(1p)`, `make(1p)` and "mandatory utilities"
+  * POSIX `sh(1p)`, `make(1p)`, and "mandatory utilities"
 
+---
 
-INSTALL
-=======
+INSTALLATION
+============
 
-The shell commands `make && make install` should build and install
-this package.
+To build and install:
 
-The shell command `make check` should start some tests.
+```sh
+make
+make install   # as root
+```
 
-See `config.mk` file for configuration parameters.
+To run tests:
 
+```sh
+make check
+```
+
+Configuration parameters are defined in `config.mk`.
+
+---
 
 DOCUMENTATION
 =============
 
-Online documentation
---------------------
+Manual pages are provided in `/man` and installed under the system
+manual hierarchy.
 
-See `/man`.
-
+---
 
 LICENSE
 =======
 
-`qemuconf` is licensed through MIT License.
+`qemuconf` is licensed under the MIT License.
 
-See LICENSE file for copyright and license details.
+See `LICENSE` file for copyright and license details.
