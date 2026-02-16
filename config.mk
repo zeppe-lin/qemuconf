@@ -13,4 +13,4 @@ MANPREFIX = $(PREFIX)/share/man
 CPPFLAGS  = -D_DEFAULT_SOURCE -DVERSION=\"$(VERSION)\" \
             -DQEMU_BIN=\"$(QEMU_BIN)\"
 CFLAGS    = -pedantic -Wall -Wextra -Wformat $(CPPFLAGS)
-LDFLAGS   =
+LDFLAGS   = -static
